@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Synnduit.Configuration;
+using System.Collections.Generic;
 
 namespace Synnduit
 {
@@ -63,5 +64,15 @@ namespace Synnduit
         /// to preserve arbitrary pieces of data between run segments.
         /// </summary>
         IDictionary<string, object> RunData { get; }
+
+        /// <summary>
+        /// Gets the current run configuration.
+        /// </summary>
+        IRunConfiguration RunConfiguration { get; }
+
+        /// <summary>
+        /// Gets the current run segment configuration.
+        /// </summary>
+        ISegmentConfiguration SegmentConfiguration { get; }
     }
 }
