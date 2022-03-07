@@ -135,6 +135,12 @@
   <data name="AtLeastOneSourceSystemMustBeSpecified" xml:space="preserve">
     <value>At least one source system must be specified.</value>
   </data>
+  <data name="ConnectionStringNameNotSpecified" xml:space="preserve">
+    <value>Please specify a valid connection string name (in the settings file; the ConnectionStringName value).</value>
+  </data>
+  <data name="ConnectionStringNotFound" xml:space="preserve">
+    <value>The '{0}' connection string could not be found in the settings file.</value>
+  </data>
   <data name="DependencyContainerNotSet" xml:space="preserve">
     <value>No dependency container has been set.</value>
   </data>

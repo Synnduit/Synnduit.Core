@@ -19,7 +19,7 @@ namespace Synnduit.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -111,6 +111,24 @@ namespace Synnduit.Properties {
         internal static string AtLeastOneSourceSystemMustBeSpecified {
             get {
                 return ResourceManager.GetString("AtLeastOneSourceSystemMustBeSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please specify a valid connection string name (in the settings file; the ConnectionStringName value)..
+        /// </summary>
+        internal static string ConnectionStringNameNotSpecified {
+            get {
+                return ResourceManager.GetString("ConnectionStringNameNotSpecified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &apos;{0}&apos; connection string could not be found in the settings file..
+        /// </summary>
+        internal static string ConnectionStringNotFound {
+            get {
+                return ResourceManager.GetString("ConnectionStringNotFound", resourceCulture);
             }
         }
         
