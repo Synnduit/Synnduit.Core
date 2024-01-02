@@ -24,6 +24,11 @@ namespace Synnduit.Configuration
         ILoggingConfiguration Logging { get; }
 
         /// <summary>
+        /// Gets the application's exception handling behavior configuration.
+        /// </summary>
+        IExceptionHandlingConfiguration ExceptionHandling { get; }
+
+        /// <summary>
         /// Gets the collection of supported runs.
         /// </summary>
         IEnumerable<IRunConfiguration> Runs { get; }

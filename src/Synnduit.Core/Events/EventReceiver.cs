@@ -27,6 +27,8 @@ namespace Synnduit.Events
         IEventReceiver<IOrphanMappingsProcessingArgs>,
         IEventReceiver<IProcessedArgs<TEntity>>,
         IEventReceiver<IProcessingArgs<TEntity>>,
+        IEventReceiver<IRunAbortedArgs>,
+        IEventReceiver<ISegmentAbortedArgs>,
         IEventReceiver<ISegmentExecutedArgs>,
         IEventReceiver<ISegmentExecutingArgs>
         where TEntity : class
@@ -168,6 +170,20 @@ namespace Synnduit.Events
         /// </summary>
         /// <param name="args">The event data.</param>
         public virtual void OnProcessing(IProcessingArgs<TEntity> args)
+        { }
+
+        /// <summary>
+        /// Called when the run has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        public virtual void OnRunAborted(IRunAbortedArgs args)
+        { }
+
+        /// <summary>
+        /// Called when a run segment has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        public virtual void OnSegmentAborted(ISegmentAbortedArgs args)
         { }
 
         /// <summary>
@@ -357,6 +373,24 @@ namespace Synnduit.Events
             IProcessingArgs<TEntity> args)
         {
             this.OnProcessing(args);
+        }
+
+        /// <summary>
+        /// Called when the run has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        void IEventReceiver<IRunAbortedArgs>.Occurred(IRunAbortedArgs args)
+        {
+            this.OnRunAborted(args);
+        }
+
+        /// <summary>
+        /// Called when a run segment has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        void IEventReceiver<ISegmentAbortedArgs>.Occurred(ISegmentAbortedArgs args)
+        {
+            this.OnSegmentAborted(args);
         }
 
         /// <summary>
