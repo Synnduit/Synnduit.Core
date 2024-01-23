@@ -3,7 +3,7 @@
     /// <summary>
     /// The event data for the event that occurs when a run segment has been aborted.
     /// </summary>
-    public interface ISegmentAbortedArgs : ICountThresholdAbortedArgs
+    public interface IGarbageCollectionAbortedArgs : IPercentageThresholdAbortedArgs
     {
     }
 }

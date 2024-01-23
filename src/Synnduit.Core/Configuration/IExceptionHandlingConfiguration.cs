@@ -8,11 +8,22 @@
         /// <summary>
         /// Gets the number of exceptions that will trigger a segment abort.
         /// </summary>
-        int? PerSegmentAbortThreshold { get; }
+        int? SegmentAbortThreshold { get; }
 
         /// <summary>
         /// Gets the number of exceptions that will trigger a run abort.
         /// </summary>
-        int? PerRunAbortThreshold { get; }
+        int? RunAbortThreshold { get; }
+
+        /// <summary>
+        /// Gets the percentage of orphan mappings that will trigger an abort.
+        /// </summary>
+        double? OrphanMappingPercentageAbortThreshold { get; }
+
+        /// <summary>
+        /// Gets the percentage of entities identified for garbage collection that will trigger an
+        /// abort.
+        /// </summary>
+        double? GarbageCollectionPercentageAbortThreshold { get; }
     }
 }

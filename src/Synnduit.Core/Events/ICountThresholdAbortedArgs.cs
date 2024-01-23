@@ -1,10 +1,9 @@
 ﻿namespace Synnduit.Events
 {
     /// <summary>
-    /// The base interface for interfaces representing the event data for individual
-    /// abort events.
+    /// The base interface for count threshold-based abort event data.
     /// </summary>
-    public interface IAbortedArgs
+    public interface ICountThresholdAbortedArgs
     {
         /// <summary>
         /// Gets the number of exceptions that triggered the abort.
