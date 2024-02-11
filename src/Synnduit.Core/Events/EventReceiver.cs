@@ -15,6 +15,7 @@ namespace Synnduit.Events
         IEventReceiver<IDeletionEntityLoadedArgs<TEntity>>,
         IEventReceiver<IDeletionProcessedArgs>,
         IEventReceiver<IDeletionProcessingArgs>,
+        IEventReceiver<IGarbageCollectionAbortedArgs>,
         IEventReceiver<IGarbageCollectionInitializedArgs>,
         IEventReceiver<IGarbageCollectionInitializingArgs>,
         IEventReceiver<IInitializedArgs>,
@@ -24,9 +25,12 @@ namespace Synnduit.Events
         IEventReceiver<IMappingsCachedArgs>,
         IEventReceiver<IMappingsCachingArgs>,
         IEventReceiver<IOrphanMappingProcessedArgs>,
+        IEventReceiver<IOrphanMappingsProcessingAbortedArgs>,
         IEventReceiver<IOrphanMappingsProcessingArgs>,
         IEventReceiver<IProcessedArgs<TEntity>>,
         IEventReceiver<IProcessingArgs<TEntity>>,
+        IEventReceiver<IRunAbortedArgs>,
+        IEventReceiver<ISegmentAbortedArgs>,
         IEventReceiver<ISegmentExecutedArgs>,
         IEventReceiver<ISegmentExecutingArgs>
         where TEntity : class
@@ -80,6 +84,13 @@ namespace Synnduit.Events
         /// </summary>
         /// <param name="args">The event data.</param>
         public virtual void OnDeletionProcessing(IDeletionProcessingArgs args)
+        { }
+
+        /// <summary>
+        /// Called when a garbage collection run segment has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        public virtual void OnGarbageCollectionAborted(IGarbageCollectionAbortedArgs args)
         { }
 
         /// <summary>
@@ -150,6 +161,14 @@ namespace Synnduit.Events
         { }
 
         /// <summary>
+        /// Called when the processing of orphan mappings has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        public virtual void OnOrphanMappingsProcessingAborted(
+            IOrphanMappingsProcessingAbortedArgs args)
+        { }
+
+        /// <summary>
         /// Called when orphan identifier mappings are about to be processed.
         /// </summary>
         /// <param name="args">The event data.</param>
@@ -168,6 +187,20 @@ namespace Synnduit.Events
         /// </summary>
         /// <param name="args">The event data.</param>
         public virtual void OnProcessing(IProcessingArgs<TEntity> args)
+        { }
+
+        /// <summary>
+        /// Called when the run has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        public virtual void OnRunAborted(IRunAbortedArgs args)
+        { }
+
+        /// <summary>
+        /// Called when a run segment has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        public virtual void OnSegmentAborted(ISegmentAbortedArgs args)
         { }
 
         /// <summary>
@@ -241,6 +274,16 @@ namespace Synnduit.Events
         void IEventReceiver<IDeletionProcessingArgs>.Occurred(IDeletionProcessingArgs args)
         {
             this.OnDeletionProcessing(args);
+        }
+
+        /// <summary>
+        /// Called when a garbage collection run segment has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        void IEventReceiver<IGarbageCollectionAbortedArgs>.Occurred(
+            IGarbageCollectionAbortedArgs args)
+        {
+            this.OnGarbageCollectionAborted(args);
         }
 
         /// <summary>
@@ -330,6 +373,16 @@ namespace Synnduit.Events
         }
 
         /// <summary>
+        /// Called when the processing of orphan mappings has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        void IEventReceiver<IOrphanMappingsProcessingAbortedArgs>.Occurred(
+            IOrphanMappingsProcessingAbortedArgs args)
+        {
+            this.OnOrphanMappingsProcessingAborted(args);
+        }
+
+        /// <summary>
         /// Called when orphan identifier mappings are about to be processed.
         /// </summary>
         /// <param name="args">The event data.</param>
@@ -357,6 +410,24 @@ namespace Synnduit.Events
             IProcessingArgs<TEntity> args)
         {
             this.OnProcessing(args);
+        }
+
+        /// <summary>
+        /// Called when the run has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        void IEventReceiver<IRunAbortedArgs>.Occurred(IRunAbortedArgs args)
+        {
+            this.OnRunAborted(args);
+        }
+
+        /// <summary>
+        /// Called when a run segment has been aborted.
+        /// </summary>
+        /// <param name="args">The event data.</param>
+        void IEventReceiver<ISegmentAbortedArgs>.Occurred(ISegmentAbortedArgs args)
+        {
+            this.OnSegmentAborted(args);
         }
 
         /// <summary>
