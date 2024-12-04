@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Synnduit
@@ -58,13 +59,19 @@ namespace Synnduit
         /// The maximum length of a string value in characters; only applicable to strings;
         /// a negative value (-1, the default) indicates no restriction.
         /// </param>
+        /// <param name="forceNullPropagationSourceSystemTypes">
+        /// The collection of types representing the source systems for which the propagation of
+        /// null values during deduplication shall be forced.
+        /// </param>
         /// <seealso cref="EntityPropertyAttribute" />
+        /// <seealso cref="ForceNullPropagationAttribute" />
         void EntityProperty<TValue>(
             Expression<Func<TEntity, TValue>> propertyExpression,
             string groupName = null,
             bool nullifyIfWhiteSpaceOnly = true,
             bool ignoreTrailingWhiteSpace = false,
-            int maxLength = -1);
+            int maxLength = -1,
+            IEnumerable<Type> forceNullPropagationSourceSystemTypes = null);
 
         /// <summary>
         /// Defines an entity property with a nullable proxy property.
@@ -85,12 +92,18 @@ namespace Synnduit
         /// The maximum length of a string value in characters; only applicable to strings;
         /// a negative value (-1, the default) indicates no restriction.
         /// </param>
+        /// <param name="forceNullPropagationSourceSystemTypes">
+        /// The collection of types representing the source systems for which the propagation of
+        /// null values during deduplication shall be forced.
+        /// </param>
         /// <seealso cref="EntityPropertyAttribute" />
+        /// <seealso cref="ForceNullPropagationAttribute" />
         void EntityProperty<TValue>(
             Expression<Func<TEntity, TValue>> propertyExpression,
             Expression<Func<TEntity, TValue?>> nullableProxyPropertyExpression,
             string groupName = null,
-            int maxLength = -1)
+            int maxLength = -1,
+            IEnumerable<Type> forceNullPropagationSourceSystemTypes = null)
             where TValue : struct;
 
         /// <summary>

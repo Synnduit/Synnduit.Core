@@ -18,7 +18,7 @@ namespace Synnduit
         /// <param name="paramName">The name of the parameter.</param>
         public static void EnsureArgumentNotNull(object argument, string paramName)
         {
-            if(argument == null)
+            if (argument == null)
             {
                 throw new ArgumentNullException(paramName);
             }
@@ -35,7 +35,7 @@ namespace Synnduit
             EnsureArgumentNotNullOrWhiteSpace(string argument, string paramName)
         {
             EnsureArgumentNotNull(argument, paramName);
-            if(string.IsNullOrWhiteSpace(argument))
+            if (string.IsNullOrWhiteSpace(argument))
             {
                 throw new ArgumentException(
                     Resources.ArgumentMustNotBeWhiteSpace, paramName);
@@ -52,7 +52,7 @@ namespace Synnduit
         public static void EnsureArgumentDoesNotExceedMaxLength(
             string argument, int maxLength, string paramName)
         {
-            if(argument != null && argument.Length > maxLength)
+            if (argument != null && argument.Length > maxLength)
             {
                 throw new ArgumentException(
                     string.Format(Resources.ArgumentTooLong, maxLength),
@@ -68,7 +68,7 @@ namespace Synnduit
         /// <param name="paramName">The name of the parameter.</param>
         public static void EnsureArgumentNotEmpty(Guid argument, string paramName)
         {
-            if(argument == Guid.Empty)
+            if (argument == Guid.Empty)
             {
                 throw new ArgumentException(
                     Resources.ArgumentMustNotBeEmptyGuid, paramName);
@@ -87,7 +87,7 @@ namespace Synnduit
         public static Guid EnsureArgumentValidGuid(string argument, string paramName)
         {
             EnsureArgumentNotNull(argument, paramName);
-            if(Guid.TryParse(argument, out Guid guidValue) == false)
+            if (Guid.TryParse(argument, out Guid guidValue) == false)
             {
                 throw new ArgumentException(
                     string.Format(Resources.ArgumentNotGuid, argument),
@@ -106,7 +106,7 @@ namespace Synnduit
         /// <param name="paramName">The name of the parameter.</param>
         public static void EnsureArgumentsNotNull(IEnumerable arguments, string paramName)
         {
-            foreach(object argument in arguments)
+            foreach (object argument in arguments)
             {
                 EnsureArgumentNotNull(argument, paramName);
             }
@@ -122,18 +122,29 @@ namespace Synnduit
         /// The collection of arguments (values) to validate.
         /// </param>
         /// <param name="paramName">The name of the parameter.</param>
+        /// <param name="allowNull">
+        /// A value indicating whether the arguments collection itself may be null; when true,
+        /// validation will always succeed if the collection is null; the default is false.
+        /// </param>
         public static void EnsureArgumentsNotNullAndUnique(
-            IEnumerable arguments, string paramName)
+            IEnumerable arguments, string paramName, bool allowNull = false)
         {
-            EnsureArgumentNotNull(arguments, paramName);
-            var argumentSet = new HashSet<object>();
-            foreach(object argument in arguments)
+            if (!allowNull)
             {
-                EnsureArgumentNotNull(argument, paramName);
-                if(!argumentSet.Add(argument))
+                EnsureArgumentNotNull(arguments, paramName);
+            }
+
+            if (arguments != null)
+            {
+                var argumentSet = new HashSet<object>();
+                foreach (object argument in arguments)
                 {
-                    throw new ArgumentException(
-                        Resources.ArgumentContainsDuplicates, paramName);
+                    EnsureArgumentNotNull(argument, paramName);
+                    if (!argumentSet.Add(argument))
+                    {
+                        throw new ArgumentException(
+                            Resources.ArgumentContainsDuplicates, paramName);
+                    }
                 }
             }
         }

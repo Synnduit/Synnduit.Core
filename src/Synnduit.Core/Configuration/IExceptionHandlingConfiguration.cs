@@ -25,7 +25,7 @@
         /// <see cref="OrphanMappingPercentageAbortThreshold"/> should be applied to the entire
         /// run; if false or unset, the abort will only apply to the segment.
         /// </summary>
-        bool? OrphanMappingPercentageThresholdAbortsRun { get; set; }
+        bool? OrphanMappingPercentageThresholdAbortsRun { get; }
 
         /// <summary>
         /// Gets the percentage of entities identified for garbage collection that will trigger an
@@ -38,6 +38,6 @@
         /// <see cref="GarbageCollectionPercentageAbortThreshold"/> should be applied to the entire
         /// run; if false or unset, the abort will only apply to the segment.
         /// </summary>
-        bool? GarbageCollectionPercentageThresholdAbortsRun { get; set; }
+        bool? GarbageCollectionPercentageThresholdAbortsRun { get; }
     }
 }
